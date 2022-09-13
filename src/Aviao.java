@@ -1,3 +1,9 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 class Aviao {
     private String modelo;
     private String cor;
@@ -5,12 +11,28 @@ class Aviao {
     private String material;
     private String velocidade;
 
-    public Aviao() {
-        this.modelo = "";
-        this.cor = "";
-        this.motor = "";
-        this.material = "";
-        this.velocidade = "";
+        // METODO PARA GRAVAR NO ARQUIVO
+        public String salvar() {
+            
+            try {
+                FileWriter fw = new FileWriter("cadastro.csv", true);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.println("Modelo  " +this.modelo);
+                pw.println("Cor  " +this.cor);
+                pw.println("Motor  " +this.motor);
+                pw.println("Material  " +this.material);
+                pw.println("Velocidade  " +this.velocidade);
+                pw.flush();
+                pw.close();
+                fw.close();
+                
+            
+            } catch (IOException ex) {
+                // TODO Auto-generated catch block
+                Logger.getLogger(Aviao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		
+		return "Avião Cadastrado!" ;
 
     }
 

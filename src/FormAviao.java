@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class FormAviao extends javax.swing.JFrame {
 
     public FormAviao() {
@@ -150,7 +152,7 @@ public class FormAviao extends javax.swing.JFrame {
             System.out.println(c1.getVelocidade());
             txtVelocidade.setText("");
 
-        
+            JOptionPane.showMessageDialog(null , c1.salvar());
         
     }                                          
 
