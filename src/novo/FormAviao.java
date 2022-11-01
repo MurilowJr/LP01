@@ -2,12 +2,15 @@ package novo;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -116,6 +119,31 @@ public class FormAviao extends JFrame {
 		contentPane.add(txtVelocidade);
 		
 		JButton confirmBtn = new JButton("Confirmar");
+		confirmBtn.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				Aviao a1 = new Aviao();
+				a1.setModelo(txtModelo.getText());
+				txtModelo.setText("");
+				a1.setCor(txtCor.getText());
+				txtCor.setText("");
+				a1.setMotor(txtMotor.getText());
+				txtMotor.setText("");
+				a1.setMaterial(txtMaterial.getText());
+				txtMaterial.setText("");
+				a1.setVelocidade(txtVelocidade.getText());
+				txtVelocidade.setText("");
+				list.add(a1);
+				id.add(a1.getModelo());
+				id.add(a1.getCor());
+				id.add(a1.getMotor());
+				id.add(a1.getMaterial());
+				id.add(a1.getVelocidade());
+				JOptionPane.showMessageDialog(null , a1.salvar());
+			}
+		});
+		
+		
 		confirmBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		confirmBtn.setBounds(153, 325, 129, 56);
 		contentPane.add(confirmBtn);

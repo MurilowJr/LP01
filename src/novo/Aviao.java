@@ -1,5 +1,11 @@
 package novo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Aviao {
 	private String modelo;
     private String cor;
@@ -7,6 +13,11 @@ public class Aviao {
     private String material;
     private String velocidade;
 	
+    
+    public Aviao() {
+    	
+    }
+    
     public Aviao(String modelo, String cor, String motor, String material, String velocidade) {
 		this.modelo = modelo;
 		this.cor = cor;
@@ -55,6 +66,28 @@ public class Aviao {
 		this.velocidade = velocidade;
 	}
     
-    
+	public String salvar() {
+        
+        try {
+            FileWriter fw = new FileWriter("cadastro.csv", true);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println("Modelo  " +this.modelo);
+            pw.println("Cor  " +this.cor);
+            pw.println("Motor  " +this.motor);
+            pw.println("Material  " +this.material);
+            pw.println("Velocidade  " +this.velocidade);
+            pw.flush();
+            pw.close();
+            fw.close();
+            
+        
+        } catch (IOException ex) {
+            
+            Logger.getLogger(Aviao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	
+	return "Avião Cadastrado!" ;
+
+}
     
 }
