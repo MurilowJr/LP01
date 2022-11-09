@@ -138,10 +138,6 @@ public class FormAviao extends JFrame {
 				txtVelocidade.setText("");
 				list.add(a1);
 				id.add(a1.getModelo());
-				id.add(a1.getCor());
-				id.add(a1.getMotor());
-				id.add(a1.getMaterial());
-				id.add(a1.getVelocidade());
 				JOptionPane.showMessageDialog(null , a1.salvar());
 			}
 		});
@@ -150,55 +146,5 @@ public class FormAviao extends JFrame {
 		confirmBtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		confirmBtn.setBounds(77, 332, 129, 56);
 		contentPane.add(confirmBtn);
-		
-		JButton btnDicionario = new JButton("Dicionario");
-		btnDicionario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try (BufferedReader br = new BufferedReader(new FileReader("C:\\\\Users\\\\BM\\\\eclipse-workspace\\\\LP01\\\\cadastro.csv"))){
-					String line = br.readLine();
-					Map<String, String> map = new HashMap<String, String>();
-					while (line != null) {
-						String [] fields = line.split(";");
-						
-						String modeloKey = "Modelo: ";
-						String modelo = fields[0];
-						String corKey = "Cor: ";
-						String cor = fields[1];
-						String motorKey = "Motor: ";
-						String motor = fields[2];
-						String materialKey = "Material: ";
-						String material = fields[3];
-						String velocidadeKey = "Velocidade: ";
-						String velocidade = fields[4];
-						
-						map.put(modeloKey, modelo);
-						map.put(corKey, cor);
-						map.put(motorKey, motor);
-						map.put(materialKey, material);
-						map.put(velocidadeKey, velocidade);
-						
-						
-						line = br.readLine();
-						
-						for (String key : map.keySet()) {
-
-		                    //Capturamos o valor a partir da chave
-		                    String value = map.get(key);
-		                    System.out.println(key + " = " + value);
-						}
-					}
-					System.out.println("Dicionario");
-					
-				} catch (Exception e2) {
-					System.out.println("Error: " + e2.getMessage());
-					// TODO: handle exception
-				}
-				
-			}
-		});
-		
-		btnDicionario.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnDicionario.setBounds(216, 332, 129, 56);
-		contentPane.add(btnDicionario);
 	}
 }
