@@ -4,12 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,6 +27,9 @@ public class FormAviao extends JFrame {
 	private JTextField txtVelocidade;
 	HashSet<String> id;
 	ArrayList<Aviao> list;
+	HashMap<String, Aviao> map;
+	Aviao a1;
+	private JTextField txtChassis;
 	/**
 	 * Launch the application.
 	 */
@@ -50,6 +50,7 @@ public class FormAviao extends JFrame {
 	 * Create the frame.
 	 */
 	public FormAviao() {
+		map = new HashMap<>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 476);
 		contentPane = new JPanel();
@@ -61,10 +62,16 @@ public class FormAviao extends JFrame {
 		list = new ArrayList<>();
 		id = new HashSet<String>();
 		
-		JLabel lblNewLabel = new JLabel("AVIÃO");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 27));
-		lblNewLabel.setBounds(171, 54, 96, 49);
-		contentPane.add(lblNewLabel);
+		JLabel lblAviao = new JLabel("AVI\u00C3O");
+		lblAviao.setFont(new Font("Arial", Font.BOLD, 27));
+		lblAviao.setBounds(170, 11, 96, 49);
+		contentPane.add(lblAviao);
+		
+		JLabel chassis = new JLabel("Chassi");
+		chassis.setHorizontalAlignment(SwingConstants.RIGHT);
+		chassis.setFont(new Font("Arial", Font.PLAIN, 16));
+		chassis.setBounds(10, 82, 96, 28);
+		contentPane.add(chassis);
 		
 		JLabel cor = new JLabel("Cor");
 		cor.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -96,6 +103,11 @@ public class FormAviao extends JFrame {
 		velocidade.setBounds(10, 275, 96, 28);
 		contentPane.add(velocidade);
 		
+		txtChassis = new JTextField();
+		txtChassis.setColumns(10);
+		txtChassis.setBounds(115, 82, 276, 26);
+		contentPane.add(txtChassis);
+		
 		txtModelo = new JTextField();
 		txtModelo.setBounds(115, 119, 276, 26);
 		contentPane.add(txtModelo);
@@ -125,7 +137,9 @@ public class FormAviao extends JFrame {
 		confirmBtn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Aviao a1 = new Aviao();
+				a1 = new Aviao();
+				a1.setChassis(txtChassis.getText());
+				txtChassis.setText("");
 				a1.setModelo(txtModelo.getText());
 				txtModelo.setText("");
 				a1.setCor(txtCor.getText());
@@ -137,8 +151,15 @@ public class FormAviao extends JFrame {
 				a1.setVelocidade(txtVelocidade.getText());
 				txtVelocidade.setText("");
 				list.add(a1);
-				id.add(a1.getModelo());
+				id.add(a1.getChassis());
 				JOptionPane.showMessageDialog(null , a1.salvar());
+				map.put(a1.getChassis(), a1);
+				
+				for (String key: map.keySet()) {
+					
+					System.out.println(key + map.get(key));
+					JOptionPane.showMessageDialog(null, key + map.get(key));
+				}
 			}
 		});
 		
@@ -148,3 +169,4 @@ public class FormAviao extends JFrame {
 		contentPane.add(confirmBtn);
 	}
 }
+	

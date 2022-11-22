@@ -12,18 +12,19 @@ public class Aviao {
     private String motor;
     private String material;
     private String velocidade;
-	
+	private String chassis;
     
     public Aviao() {
     	
     }
     
-    public Aviao(String modelo, String cor, String motor, String material, String velocidade) {
+    public Aviao(String modelo, String cor, String motor, String material, String velocidade, String chassis) {
 		this.modelo = modelo;
 		this.cor = cor;
 		this.motor = motor;
 		this.material = material;
 		this.velocidade = velocidade;
+		this.chassis = chassis;
 	}
 
 	public String getModelo() {
@@ -65,7 +66,15 @@ public class Aviao {
 	public void setVelocidade(String velocidade) {
 		this.velocidade = velocidade;
 	}
-    
+	
+	public String getChassis() {
+		return chassis;
+	}
+
+	public void setChassis(String chassis) {
+		this.chassis = chassis;
+	}
+
 	public String salvar() {
         
         try {
