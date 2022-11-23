@@ -157,8 +157,12 @@ public class FormAviao extends JFrame {
 				
 				for (String key: map.keySet()) {
 					
-					System.out.println(key + map.get(key));
-					JOptionPane.showMessageDialog(null, key + map.get(key));
+					System.out.println(key + map.get(key).getCor() 
+							+ map.get(key).getMaterial()
+							+ map.get(key).getModelo()
+							+ map.get(key).getMotor()
+							+ map.get(key).getVelocidade());
+					JOptionPane.showMessageDialog(null,"Chassi" + key + "cadastrado");
 				}
 			}
 		});
